@@ -97,6 +97,15 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 
 .btn--outline:hover { background: rgba(255, 255, 255, 0.22); }
 
+.btn--outline-dark {
+  background: transparent;
+  color: var(--color-primary-dark);
+  border: 1.5px solid var(--color-primary);
+  backdrop-filter: none;
+}
+
+.btn--outline-dark:hover { background: var(--color-primary); color: #fff; }
+
 /* ---------- Section Utilities ---------- */
 .section { padding: 72px 0; }
 .section--tinted { background: var(--color-secondary); }
@@ -151,6 +160,9 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 
 .navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
@@ -159,6 +171,16 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 
 .navbar__logo span { color: var(--color-accent); }
+
+.navbar__logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 3px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
 
 .navbar__nav {
   display: flex;
@@ -230,6 +252,42 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .navbar.is-scrolled .navbar__logo span { color: var(--color-primary); }
 .navbar.is-scrolled .nav-link:hover { color: var(--color-primary); }
 .navbar.is-scrolled .navbar__toggle span { background: var(--color-text); }
+
+/* =========================================================
+   Page Header (secondary pages)
+   ========================================================= */
+.page-header {
+  position: relative;
+  padding: 180px 0 72px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(20, 30, 20, 0.55) 0%, rgba(20, 30, 20, 0.75) 100%), url("images/villa1.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.page-header .section-eyebrow { color: var(--color-accent); }
+
+.page-header__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin: 10px 0 14px;
+}
+
+.page-header__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto 22px;
+}
+
+.page-header__back {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.page-header__back:hover { color: var(--color-accent); border-color: var(--color-accent); }
 
 /* =========================================================
    Hero
@@ -427,6 +485,11 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+}
+
+.gallery__more {
+  text-align: center;
+  margin-top: 32px;
 }
 
 .gallery__item {

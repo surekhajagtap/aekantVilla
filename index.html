@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="images/hero.jpg" />
 
 <!-- Favicon placeholder -->
-<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="icon" type="image/png" href="images/logo.png" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,10 @@
 <!-- ============ NAVIGATION ============ -->
 <header class="navbar" id="navbar">
   <div class="navbar__inner container">
-    <a href="#home" class="navbar__logo">Aekant <span>Villa</span></a>
+    <a href="#home" class="navbar__logo">
+      <img src="images/logo.png" alt="Aekant Villa logo" class="navbar__logo-img" width="44" height="44" />
+      Aekant <span>Villa</span>
+    </a>
 
     <nav class="navbar__nav" id="navMenu">
       <a href="#home" class="nav-link">Home</a>
@@ -210,6 +213,10 @@
       <button class="gallery__item fade-in-up" data-full="images/villa6.jpg">
         <img src="images/villa6.jpg" alt="Terrace with mountain views at Aekant Villa" loading="lazy" width="500" height="500" />
       </button>
+    </div>
+
+    <div class="gallery__more fade-in-up">
+      <a href="gallery.html" class="btn btn--outline btn--outline-dark">View More Photos</a>
     </div>
   </div>
 </section>
@@ -481,6 +488,7 @@
 <!-- ============ SCROLL TO TOP ============ -->
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" hidden>&#8593;</button>
 
-<script src="script.js"></script>
+<script src="js/manifest.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Photo Gallery | Aekant Villa</title>
+<meta name="description" content="Browse the full photo gallery of Aekant Villa — a peaceful luxury vacation villa on the Vaitarna Dam backwaters near Trimbakeshwar, Nashik." />
+<meta name="keywords" content="Aekant Villa gallery, Aekant Villa photos, Vaitarna Dam villa photos" />
+<meta name="author" content="Aekant Villa" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Photo Gallery | Aekant Villa" />
+<meta property="og:description" content="Browse the full photo gallery of Aekant Villa on the Vaitarna Dam backwaters." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="images/hero.jpg" />
+<meta property="og:url" content="https://www.aekantvilla.com/gallery.html" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Photo Gallery | Aekant Villa" />
+<meta name="twitter:description" content="Browse the full photo gallery of Aekant Villa on the Vaitarna Dam backwaters." />
+<meta name="twitter:image" content="images/hero.jpg" />
+
+<!-- Favicon placeholder -->
+<link rel="icon" type="image/png" href="images/logo.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="navbar is-scrolled" id="navbar">
+  <div class="navbar__inner container">
+    <a href="index.html" class="navbar__logo">
+      <img src="images/logo.png" alt="Aekant Villa logo" class="navbar__logo-img" width="44" height="44" />
+      Aekant <span>Villa</span>
+    </a>
+
+    <nav class="navbar__nav" id="navMenu">
+      <a href="index.html#home" class="nav-link">Home</a>
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#amenities" class="nav-link">Amenities</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="index.html#packages" class="nav-link">Packages</a>
+      <a href="index.html#attractions" class="nav-link">Nearby</a>
+      <a href="index.html#testimonials" class="nav-link">Reviews</a>
+      <a href="index.html#contact" class="nav-link nav-link--cta">Book Now</a>
+    </nav>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="page-header">
+  <div class="container">
+    <p class="section-eyebrow fade-in">Aekant Villa</p>
+    <h1 class="page-header__title fade-in">Full Photo Gallery</h1>
+    <p class="page-header__subtitle fade-in">Every corner of the villa &mdash; interiors, pool, and views &mdash; in one place.</p>
+    <a href="index.html" class="page-header__back fade-in">&larr; Back to Home</a>
+  </div>
+</section>
+
+<!-- ============ FULL GALLERY ============ -->
+<section class="gallery section" id="full-gallery">
+  <div class="container">
+    <div class="gallery__grid gallery__grid--full" id="fullGalleryGrid">
+      <!-- Rendered dynamically from js/manifest.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close image preview">&times;</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">&#8249;</button>
+  <img class="lightbox__image" id="lightboxImage" src="" alt="" />
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">&#8250;</button>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <h3>Aekant Villa</h3>
+      <p>Escape to Nature. Experience Luxury.</p>
+    </div>
+
+    <div class="footer__links">
+      <h4>Quick Links</h4>
+      <a href="index.html#about">About</a>
+      <a href="index.html#amenities">Amenities</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="footer__contact">
+      <h4>Contact</h4>
+      <a href="mailto:booking@aekantvilla.com">booking@aekantvilla.com</a>
+      <a href="tel:+918668331054">+91 86683 31054</a>
+      <p>Aekant Villa, Alwand, Trimbakeshwar, Nashik, Maharashtra, India</p>
+    </div>
+
+    <div class="footer__social">
+      <h4>Follow Us</h4>
+      <div class="footer__social-icons">
+        <a href="https://www.instagram.com/aekant_villa/" target="_blank" rel="noopener" aria-label="Follow Aekant Villa on Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47-.66.26-1.22.6-1.77 1.16-.56.55-.9 1.11-1.16 1.77-.25.64-.42 1.37-.47 2.43C2 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.16 1.77.55.56 1.11.9 1.77 1.16.64.25 1.37.42 2.43.47C8.94 22 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47.66-.26 1.22-.6 1.77-1.16.56-.55.9-1.11 1.16-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43-.26-.66-.6-1.22-1.16-1.77-.55-.56-1.11-.9-1.77-1.16-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.51.21 1.86.35.47.18.8.4 1.15.75.35.35.57.68.75 1.15.14.35.31.88.35 1.86.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.51-.35 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.14-.88.31-1.86.35-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.51-.21-1.86-.35-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.14-.35-.31-.88-.35-1.86C3.8 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.04-.98.21-1.51.35-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.14.88-.31 1.86-.35C9.01 3.8 9.33 3.8 12 3.8zm0 3.05a5.15 5.15 0 1 0 0 10.3 5.15 5.15 0 0 0 0-10.3zm0 8.5a3.35 3.35 0 1 1 0-6.7 3.35 3.35 0 0 1 0 6.7zm5.36-8.7a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        </a>
+        <a href="#" aria-label="Aekant Villa on Facebook">FB</a>
+        <a href="https://wa.me/918668331054" aria-label="Aekant Villa on WhatsApp">WA</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>&copy; <span id="year"></span> Aekant Villa. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP BUTTON ============ -->
+<a href="https://wa.me/918668331054?text=Hi%2C%20I%27m%20interested%20in%20booking%20Aekant%20Villa" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.766.464 3.484 1.345 4.997L2 22l5.145-1.312a9.96 9.96 0 0 0 4.859 1.238h.004c5.523 0 10-4.477 10-10s-4.477-9.925-10.004-9.925zm0 18.166h-.003a8.2 8.2 0 0 1-4.176-1.14l-.3-.178-3.05.778.815-2.97-.195-.306a8.19 8.19 0 0 1-1.257-4.353c0-4.535 3.69-8.223 8.23-8.223 2.2 0 4.267.857 5.822 2.413a8.17 8.17 0 0 1 2.409 5.816c-.002 4.535-3.691 8.163-8.195 8.163z"/></svg>
+</a>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" hidden>&#8593;</button>
+
+<script src="js/manifest.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
