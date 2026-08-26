@@ -29,21 +29,33 @@ async function renderFullGallery() {
 
   const { folder, extension, start } = GALLERY_CONFIG;
   const maxCheck = 500; // safety cap in case of an unbroken numbering mistake
-  const sources = [];
+  const batchSize = 10; // probe a batch at a time instead of one round trip per photo
+  const numbers = [];
 
-  let i = start;
-  while (i - start < maxCheck) {
-    const src = `${folder}/${i}.${extension}`;
-    if (!(await checkImageExists(src))) break;
-    sources.push(src);
-    i++;
+  for (let base = start; base - start < maxCheck; base += batchSize) {
+    const batch = Array.from({ length: batchSize }, (_, n) => base + n);
+    const found = await Promise.all(
+      batch.map((n) => checkImageExists(`${folder}/${n}.${extension}`))
+    );
+    const gap = found.indexOf(false);
+    numbers.push(...(gap === -1 ? batch : batch.slice(0, gap)));
+    if (gap !== -1) break;
   }
 
-  grid.innerHTML = sources.map((src, idx) => `
+  // The first row is above the fold, so let it load eagerly for a faster LCP.
+  const eagerCount = 3;
+
+  grid.innerHTML = numbers.map((n, idx) => {
+    const src = `${folder}/${n}.${extension}`;
+    const alt = (typeof GALLERY_ALT !== 'undefined' && GALLERY_ALT[n])
+      || `Aekant Villa, private pool villa near Trimbakeshwar, Nashik — photo ${idx + 1}`;
+    const loading = idx < eagerCount ? 'eager' : 'lazy';
+    return `
     <button class="gallery__item fade-in-up" data-full="${src}">
-      <img src="${src}" alt="Aekant Villa photo ${idx + 1}" loading="lazy" width="500" height="667" />
+      <img src="${src}" alt="${alt}" loading="${loading}" decoding="async" width="500" height="500" />
     </button>
-  `).join('');
+  `;
+  }).join('');
 }
 
 /* ---------- Footer Year ---------- */
