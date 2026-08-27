@@ -889,67 +889,104 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .quotes__sep { margin: 0 8px; opacity: 0.5; }
 
 /* =========================================================
-   Packages
+   Packages — editorial rate rows
    ========================================================= */
-.packages__grid {
+.rates {
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.rate {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 32px;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 30px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
 }
 
-.package-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 40px 28px;
-  text-align: center;
-  box-shadow: none;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
+.rate:hover { background: var(--color-secondary); }
 
-.package-card:hover {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.package-card--featured {
-  background: var(--color-primary);
-  color: #fff;
-}
-
-.package-card__label {
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  opacity: 0.85;
-}
-
-.package-card__price {
+.rate__num {
   font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+.rate__name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--color-primary-dark);
 }
 
-.package-card--featured .package-card__price { color: #fff; }
-
-.package-card__price span {
-  font-size: 1.1rem;
-  font-weight: 400;
-  opacity: 0.8;
-}
-
-.packages__note {
-  text-align: center;
+.rate__detail {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  font-weight: 300;
   color: var(--color-text-muted);
-  font-weight: 500;
-  margin-bottom: 28px;
 }
 
-.packages__cta { text-align: center; }
+.rate__tag {
+  display: inline-block;
+  vertical-align: 3px;
+  margin-left: 12px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.rate__price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--color-primary-dark);
+  font-variant-numeric: tabular-nums;   /* keeps the rate column aligned */
+}
+
+.rate__unit {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* The featured row is marked with a rule and a tag rather than a filled
+   block, so it reads as emphasis instead of a different component. */
+.rate--featured {
+  background: var(--color-secondary);
+  box-shadow: inset 2px 0 0 var(--color-accent);
+}
+
+.rates__note {
+  max-width: 900px;
+  margin: 30px auto 0;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.packages__cta { text-align: center; margin-top: 44px; }
 
 /* =========================================================
    Signature Line
@@ -1205,7 +1242,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .amenities__grid,
   .about__grid,
   .attractions__grid,
-  .packages__grid { grid-template-columns: repeat(2, 1fr); }
 
   .why__grid { grid-template-columns: repeat(2, 1fr); }
 
@@ -1226,7 +1262,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .amenities__grid,
   .attractions__grid,
   .why__grid,
-  .packages__grid,
   .gallery__grid { grid-template-columns: repeat(2, 1fr); }
 
   .footer__grid { grid-template-columns: 1fr 1fr; }
@@ -1235,11 +1270,33 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .section-head { margin-bottom: 44px; }
 }
 
+@media (max-width: 620px) {
+  /* Stack the rate rows: number + name on one line, price beneath, so the
+     price never gets squeezed against a wrapping name. */
+  .rate {
+    grid-template-columns: auto 1fr;
+    align-items: start;   /* keep the numeral beside the name, not the detail */
+    gap: 6px 16px;
+    padding: 26px 18px;
+  }
+
+  .rate__num { padding-top: 7px; }
+
+  .rate__price {
+    grid-column: 2;
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .rate__unit { margin-top: 6px; }
+  .rate__name { font-size: 1.2rem; }
+  .rate__tag { margin-left: 0; margin-top: 8px; display: block; width: fit-content; }
+}
+
 @media (max-width: 480px) {
   .amenities__grid,
   .attractions__grid,
   .why__grid,
-  .packages__grid,
   .gallery__grid { grid-template-columns: 1fr; }
 
   .footer__grid { grid-template-columns: 1fr; text-align: left; }
