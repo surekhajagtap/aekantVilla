@@ -585,9 +585,38 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   gap: 16px;
 }
 
+/* Home-page mosaic. Scoped with a modifier because .gallery__item is shared
+   with the full gallery page, which stays a uniform square grid.
+
+   4 columns x 4 rows:
+     A A B C
+     A A D D
+     E E F F
+     E E F F
+
+   Only slot D is a wide letterbox, so the one genuinely landscape photo
+   goes there; everything else stays near 1.6:1 or square. Giving a
+   portrait shot a 3.4:1 slot crops the subject out of frame.            */
+.gallery__grid--mosaic {
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(112px, 13vw, 178px);
+  gap: 14px;
+}
+
+.gallery__grid--mosaic .gallery__item { aspect-ratio: auto; }
+
+.gallery__grid--mosaic .gallery__item:nth-child(1),
+.gallery__grid--mosaic .gallery__item:nth-child(5),
+.gallery__grid--mosaic .gallery__item:nth-child(6) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallery__grid--mosaic .gallery__item:nth-child(4) { grid-column: span 2; }
+
 .gallery__more {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
 .gallery__item {
@@ -614,8 +643,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   transition: opacity var(--transition);
 }
 
-.gallery__item:hover img { transform: scale(1.08); }
+.gallery__item:hover img { transform: scale(1.05); }
 .gallery__item:hover::after { opacity: 1; }
+
+.gallery__item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
 
 /* Lightbox */
 .lightbox {
@@ -1248,6 +1282,27 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .contact__grid { grid-template-columns: 1fr; gap: 40px; }
 
   .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* The mosaic spans out-specify the breakpoint rules below, so they have to
+   be reset explicitly or they survive into the stacked layouts. Asymmetry
+   is a wide-viewport luxury; narrow screens get an even grid. */
+@media (max-width: 900px) {
+  .gallery__grid--mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 12px;
+  }
+
+  .gallery__grid--mosaic .gallery__item { aspect-ratio: 1 / 1; }
+
+  .gallery__grid--mosaic .gallery__item:nth-child(1),
+  .gallery__grid--mosaic .gallery__item:nth-child(4),
+  .gallery__grid--mosaic .gallery__item:nth-child(5),
+  .gallery__grid--mosaic .gallery__item:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
 }
 
 @media (max-width: 768px) {
