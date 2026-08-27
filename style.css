@@ -754,47 +754,73 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 /* =========================================================
    Attractions
    ========================================================= */
+
+/* Asymmetric card grid rather than six identical tiles. The temple is the
+   reason most guests are in Trimbakeshwar, so it leads at 2x2:
+
+     F F B
+     F F C
+     D E G                                                              */
 .attractions__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-auto-rows: minmax(150px, auto);
+  gap: 16px;
 }
 
 .attraction-card {
-  text-align: center;
-  padding: 40px 24px;
-  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* left-aligned, not a centred icon chip */
+  justify-content: flex-end;
+  gap: 18px;
+  padding: 28px 26px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   transition: border-color var(--transition), background var(--transition);
 }
 
-.attraction-card:hover {
-  border-color: var(--color-primary);
+.attraction-card:hover { border-color: var(--color-primary); }
+
+.attraction-card--feature {
+  grid-column: span 2;
+  grid-row: span 2;
   background: var(--color-secondary);
+  padding: 40px 36px;
 }
 
 .attraction-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 14px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-border-strong);
   border-radius: 50%;
-  background: #fff;
-  color: var(--color-primary);
+  color: var(--color-accent);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .attraction-card:hover .attraction-card__icon {
   background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 
-.attraction-card h3 {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
+.attraction-card--feature .attraction-card__icon { width: 58px; height: 58px; }
+
+.attraction-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-primary-dark);
+}
+
+.attraction-card--feature .attraction-card__name {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  letter-spacing: -0.01em;
 }
 
 /* =========================================================
@@ -806,23 +832,43 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   gap: 14px;
 }
 
+/* Blocks with a gold rule that fills on hover, rather than tick chips. */
 .why-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 26px 22px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 26px 22px;
-  font-size: 0.95rem;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: none;
+  overflow: hidden;
   transition: border-color var(--transition);
 }
 
-.why-card:hover { border-color: var(--color-primary); }
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition);
+}
 
-.why-card span { color: var(--color-accent); font-weight: 500; }
+.why-card:hover { border-color: var(--color-primary); }
+.why-card:hover::before { width: 100%; }
+
+.why-card__tick { color: var(--color-accent); flex-shrink: 0; }
+
+.why-card__label {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-primary-dark);
+}
 
 /* =========================================================
    Testimonials — single pull-quote
@@ -1324,6 +1370,17 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
     grid-column: auto;
     grid-row: auto;
   }
+
+  /* Same reason: the feature card's spans out-specify the column rules
+     below and would leave a hole in the stacked grid. */
+  .attraction-card--feature {
+    grid-column: auto;
+    grid-row: auto;
+    padding: 28px 26px;
+  }
+
+  .attraction-card--feature .attraction-card__icon { width: 46px; height: 46px; }
+  .attraction-card--feature .attraction-card__name { font-size: 1.05rem; }
 }
 
 @media (max-width: 768px) {
