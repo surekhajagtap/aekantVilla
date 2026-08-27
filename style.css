@@ -3,27 +3,39 @@
    ========================================================= */
 
 :root {
-  --color-primary: #2E7D32;
-  --color-primary-dark: #205a24;
-  --color-secondary: #F5F1E8;
-  --color-accent: #D4AF37;
-  --color-bg: #FFFFFF;
-  --color-text: #2A2A26;
-  --color-text-muted: #5B5B54;
+  /* Palette — warm ink + deep gold. Warm-toned neutrals (stone, not slate)
+     so the green foliage logo still sits comfortably in the system. */
+  --color-primary: #1C1917;        /* ink — primary actions, headings */
+  --color-primary-dark: #0C0A09;   /* deeper ink — hover, emphasis */
+  --color-secondary: #F5F4F2;      /* tinted section background */
+  --color-accent: #9A5D06;         /* gold on LIGHT backgrounds — AA on page (5.1:1)
+                                      AND on the tinted surface (4.85:1) */
+  --color-accent-on-dark: #D9B75F; /* gold on DARK backgrounds — 5.9:1 on scrim, 9.1:1 on ink */
+  --color-bg: #FAFAF9;
+  --color-surface: #FFFFFF;
+  --color-text: #1C1917;
+  --color-text-muted: #57534E;
+  --color-border: #E7E5E4;
+  --color-border-strong: #D6D3D1;
 
   --font-heading: 'Playfair Display', serif;
-  --font-body: 'Poppins', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  /* Tight radii read composed; large pill radii read casual. */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
 
-  --shadow-sm: 0 2px 8px rgba(42, 42, 38, 0.08);
-  --shadow-md: 0 8px 24px rgba(42, 42, 38, 0.12);
-  --shadow-lg: 0 16px 40px rgba(42, 42, 38, 0.16);
+  /* Premium surfaces lean on hairline borders, not diffuse drop shadows. */
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-md: 0 4px 16px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 12px 32px rgba(28, 25, 23, 0.12);
 
-  --transition: 250ms ease;
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --container-width: 1200px;
+
+  /* Vertical rhythm — generous whitespace is the cheapest premium signal. */
+  --section-pad: 112px;
 }
 
 /* ---------- Reset ---------- */
@@ -69,60 +81,83 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 14px 30px;
-  border-radius: 999px;
+  padding: 17px 38px;
+  border-radius: var(--radius-md);
   font-weight: 500;
-  font-size: 0.95rem;
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-height: 48px;             /* touch target */
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), box-shadow var(--transition);
   cursor: pointer;
 }
 
-.btn:active { transform: scale(0.97); }
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Primary action — solid ink. Deliberately not WhatsApp green: a chat-app
+   brand colour as the hero CTA undercuts the premium read. */
+.btn--primary {
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-surface);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-on-dark);
+  border-color: var(--color-accent-on-dark);
+  color: var(--color-primary-dark);
+}
 
 .btn--whatsapp {
   background: var(--color-primary);
   color: #fff;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-primary);
 }
 
-.btn--whatsapp:hover { background: var(--color-primary-dark); box-shadow: var(--shadow-lg); }
+.btn--whatsapp:hover { background: var(--color-primary-dark); border-color: var(--color-primary-dark); }
 
 .btn--outline {
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
   color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
-.btn--outline:hover { background: rgba(255, 255, 255, 0.22); }
+.btn--outline:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.9); }
 
 .btn--outline-dark {
   background: transparent;
   color: var(--color-primary-dark);
-  border: 1.5px solid var(--color-primary);
-  backdrop-filter: none;
+  border: 1px solid var(--color-border-strong);
 }
 
-.btn--outline-dark:hover { background: var(--color-primary); color: #fff; }
+.btn--outline-dark:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 
 /* ---------- Section Utilities ---------- */
-.section { padding: 72px 0; }
+.section { padding: var(--section-pad) 0; }
 .section--tinted { background: var(--color-secondary); }
 
-.section-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
 
 .section-eyebrow {
   color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 12px;
+  letter-spacing: 0.26em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-bottom: 18px;
 }
 
 .section-title {
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
   color: var(--color-primary-dark);
 }
 
@@ -162,15 +197,18 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-shrink: 0;              /* stop the wordmark collapsing into the nav links */
+  white-space: nowrap;
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: #fff;
   transition: color var(--transition);
 }
 
-.navbar__logo span { color: var(--color-accent); }
+.navbar__logo span { color: var(--color-accent-on-dark); }
 
 .navbar__logo-img {
   width: 44px;
@@ -185,40 +223,47 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .navbar__nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 26px;
+  min-width: 0;
 }
 
 .nav-link {
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
   transition: color var(--transition);
 }
 
+.nav-link:hover { color: #fff; }
+
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
   width: 0;
-  height: 2px;
-  background: var(--color-accent);
+  height: 1px;
+  background: var(--color-accent-on-dark);
   transition: width var(--transition);
 }
 
 .nav-link:hover::after { width: 100%; }
 
 .nav-link--cta {
-  background: var(--color-accent);
-  color: #2A2A26;
-  padding: 10px 20px;
-  border-radius: 999px;
-  font-weight: 600;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 11px 22px;
+  border-radius: var(--radius-md);
+  font-weight: 500;
 }
 
 .nav-link--cta::after { display: none; }
-.nav-link--cta:hover { background: #c29d2e; }
+.nav-link--cta:hover { background: #fff; color: var(--color-primary-dark); border-color: #fff; }
 
 .navbar__toggle {
   display: none;
@@ -240,18 +285,32 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 
 /* Scrolled state */
 .navbar.is-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-sm);
-  padding: 12px 0;
-  backdrop-filter: blur(10px);
+  background: rgba(250, 250, 249, 0.94);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: none;
+  padding: 14px 0;
+  backdrop-filter: blur(12px);
 }
 
 .navbar.is-scrolled .navbar__logo,
 .navbar.is-scrolled .nav-link { color: var(--color-text); }
 
-.navbar.is-scrolled .navbar__logo span { color: var(--color-primary); }
-.navbar.is-scrolled .nav-link:hover { color: var(--color-primary); }
+.navbar.is-scrolled .navbar__logo span { color: var(--color-accent); }
+.navbar.is-scrolled .nav-link:hover { color: var(--color-accent); }
+.navbar.is-scrolled .nav-link::after { background: var(--color-accent); }
 .navbar.is-scrolled .navbar__toggle span { background: var(--color-text); }
+
+.navbar.is-scrolled .nav-link--cta {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.navbar.is-scrolled .nav-link--cta:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
 
 /* =========================================================
    Page Header (secondary pages)
@@ -266,7 +325,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   overflow: hidden;
 }
 
-.page-header .section-eyebrow { color: var(--color-accent); }
+.page-header .section-eyebrow { color: var(--color-accent-on-dark); }
 
 .page-header__title {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -287,7 +346,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.page-header__back:hover { color: var(--color-accent); border-color: var(--color-accent); }
+.page-header__back:hover { color: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); }
 
 /* =========================================================
    Hero
@@ -307,13 +366,21 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 70%;
   z-index: 0;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 30, 20, 0.55) 0%, rgba(20, 30, 20, 0.75) 100%);
+  /* Weighted top and bottom so the navbar and the CTAs both sit on depth,
+     with a lighter band through the middle to keep the villa readable. */
+  background:
+    linear-gradient(180deg,
+      rgba(12, 10, 9, 0.74) 0%,
+      rgba(12, 10, 9, 0.60) 35%,
+      rgba(12, 10, 9, 0.68) 70%,
+      rgba(12, 10, 9, 0.88) 100%);
   z-index: 1;
 }
 
@@ -326,26 +393,53 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 
 .hero__eyebrow {
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--color-accent);
-  margin-bottom: 18px;
+  color: var(--color-accent-on-dark);
+  margin-bottom: 26px;
   transition-delay: 100ms;
 }
 
 .hero__title {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
-  margin-bottom: 20px;
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  font-weight: 400;         /* lighter weight reads more editorial than bold */
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  margin-bottom: 0;
   transition-delay: 200ms;
 }
 
+.hero__title-sub {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 22px;
+}
+
+/* Hairline rule between the title block and the tagline — a quiet
+   editorial device that separates without adding another colour. */
+.hero__title-sub::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: var(--color-accent-on-dark);
+  margin: 0 auto 22px;
+}
+
 .hero__tagline {
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 300;
-  max-width: 560px;
-  margin: 0 auto 40px;
+  max-width: 540px;
+  margin: 24px auto 44px;
   transition-delay: 300ms;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.75;
 }
 
 .hero__actions {
@@ -375,7 +469,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-accent-on-dark);
   animation: scrollDot 1.8s ease infinite;
 }
 
@@ -385,45 +479,73 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   100% { opacity: 0; }
 }
 
+.icon-svg {
+  width: 28px;
+  height: 28px;
+  transition: color var(--transition);
+}
+
 /* =========================================================
    About
    ========================================================= */
+
+/* Deliberately uneven columns: the text sits in the narrower one to hold a
+   comfortable measure, the photo takes the wider one. Text leads in the DOM
+   so it is what reads first once this stacks. */
 .about__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(40px, 5vw, 80px);
   align-items: center;
 }
 
-.about__image img {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  aspect-ratio: 6 / 7;
-  object-fit: cover;
+.about__text { max-width: 56ch; }
+
+.about__lede {
+  margin: 26px 0 18px;
+  font-size: 1.12rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text);
 }
 
 .about__desc {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
   color: var(--color-text-muted);
-  margin: 14px 0 20px;
-  font-size: 1.05rem;
 }
 
+/* Hairline-ruled rather than ticked, echoing the rate table so the two
+   sections read as one system. */
 .about__points {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 20px;
+  gap: 0 34px;
+  margin-top: 42px;
 }
 
 .about__points li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
+  padding: 13px 0;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
 }
 
-.icon-check {
-  color: var(--color-primary);
-  font-weight: 700;
+.about__image img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.about__image figcaption {
+  margin-top: 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 /* =========================================================
@@ -436,40 +558,38 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 
 .amenity-card {
-  background: #fff;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 24px 20px;
+  padding: 32px 24px;
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
+/* Borders darken rather than the card lifting — a quieter, more composed
+   hover than a translate + shadow bloom. */
 .amenity-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .amenity-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 16px;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
   border-radius: 50%;
   background: var(--color-secondary);
-  color: var(--color-primary);
+  color: var(--color-accent);
+  transition: background var(--transition), color var(--transition);
 }
 
 .amenity-card:hover .amenity-card__icon {
   background: var(--color-primary);
   color: #fff;
-}
-
-.icon-svg {
-  width: 28px;
-  height: 28px;
-  transition: color var(--transition);
 }
 
 .amenity-card h3 {
@@ -487,9 +607,38 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   gap: 16px;
 }
 
+/* Home-page mosaic. Scoped with a modifier because .gallery__item is shared
+   with the full gallery page, which stays a uniform square grid.
+
+   4 columns x 4 rows:
+     A A B C
+     A A D D
+     E E F F
+     E E F F
+
+   Only slot D is a wide letterbox, so the one genuinely landscape photo
+   goes there; everything else stays near 1.6:1 or square. Giving a
+   portrait shot a 3.4:1 slot crops the subject out of frame.            */
+.gallery__grid--mosaic {
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(112px, 13vw, 178px);
+  gap: 14px;
+}
+
+.gallery__grid--mosaic .gallery__item { aspect-ratio: auto; }
+
+.gallery__grid--mosaic .gallery__item:nth-child(1),
+.gallery__grid--mosaic .gallery__item:nth-child(5),
+.gallery__grid--mosaic .gallery__item:nth-child(6) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallery__grid--mosaic .gallery__item:nth-child(4) { grid-column: span 2; }
+
 .gallery__more {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
 .gallery__item {
@@ -516,8 +665,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   transition: opacity var(--transition);
 }
 
-.gallery__item:hover img { transform: scale(1.08); }
+.gallery__item:hover img { transform: scale(1.05); }
 .gallery__item:hover::after { opacity: 1; }
+
+.gallery__item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
 
 /* Lightbox */
 .lightbox {
@@ -600,43 +754,73 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 /* =========================================================
    Attractions
    ========================================================= */
+
+/* Asymmetric card grid rather than six identical tiles. The temple is the
+   reason most guests are in Trimbakeshwar, so it leads at 2x2:
+
+     F F B
+     F F C
+     D E G                                                              */
 .attractions__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-auto-rows: minmax(150px, auto);
+  gap: 16px;
 }
 
 .attraction-card {
-  text-align: center;
-  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* left-aligned, not a centred icon chip */
+  justify-content: flex-end;
+  gap: 18px;
+  padding: 28px 26px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: var(--color-secondary);
-  transition: transform var(--transition);
+  transition: border-color var(--transition), background var(--transition);
 }
 
-.attraction-card:hover { transform: translateY(-6px); }
+.attraction-card:hover { border-color: var(--color-primary); }
+
+.attraction-card--feature {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: var(--color-secondary);
+  padding: 40px 36px;
+}
 
 .attraction-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 14px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-border-strong);
   border-radius: 50%;
-  background: #fff;
-  color: var(--color-primary);
+  color: var(--color-accent);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .attraction-card:hover .attraction-card__icon {
   background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 
-.attraction-card h3 {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
+.attraction-card--feature .attraction-card__icon { width: 58px; height: 58px; }
+
+.attraction-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-primary-dark);
+}
+
+.attraction-card--feature .attraction-card__name {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  letter-spacing: -0.01em;
 }
 
 /* =========================================================
@@ -648,108 +832,263 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   gap: 14px;
 }
 
+/* Blocks with a gold rule that fills on hover, rather than tick chips. */
 .why-card {
-  background: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 26px 22px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 22px 18px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition);
+}
+
+.why-card:hover { border-color: var(--color-primary); }
+.why-card:hover::before { width: 100%; }
+
+.why-card__tick { color: var(--color-accent); flex-shrink: 0; }
+
+.why-card__label {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-primary-dark);
+}
+
+/* =========================================================
+   Testimonials — single pull-quote
+   ========================================================= */
+.quotes { max-width: 880px; margin: 0 auto; }
+
+/* All quotes share one grid cell so the block is as tall as the longest
+   one — switching between them cannot shift the layout. */
+.quotes__viewport { display: grid; }
+
+.quote {
+  grid-area: 1 / 1;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  /* visibility must flip in instantly but wait for the fade on the way out */
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 400ms;
+}
+
+.quote.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0s;
+}
+
+.quote__rating {
+  color: var(--color-accent);
+  letter-spacing: 6px;
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-bottom: 34px;
+}
+
+.quote__text {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-primary-dark);
+}
+
+/* Oversized opening mark, set behind the text as a watermark. Note `em`
+   here resolves against this element's own 5.5em size, not the text's —
+   so the offset stays small or the glyph flies off above the quote. */
+.quote__text::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.14em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5.5em;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.quote__by {
+  margin-top: 34px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+}
+
+.quote__by span {
+  display: block;
+  margin-top: 7px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+.quotes__controls {
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: var(--shadow-sm);
+  justify-content: center;
+  gap: 26px;
+  margin-top: 52px;
 }
 
-.why-card span { color: var(--color-accent); font-weight: 700; }
-
-/* =========================================================
-   Testimonials
-   ========================================================= */
-.testimonials__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.testimonial-card {
-  background: var(--color-secondary);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  position: relative;
-}
-
-.testimonial-card p {
-  font-style: italic;
-  color: var(--color-text);
-  margin-bottom: 18px;
-}
-
-.testimonial-card footer {
-  font-weight: 600;
+.quotes__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
   color: var(--color-primary-dark);
-  font-size: 0.9rem;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
-/* =========================================================
-   Packages
-   ========================================================= */
-.packages__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 32px;
-}
-
-.package-card {
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: 32px 20px;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.package-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-}
-
-.package-card--featured {
+.quotes__btn:hover {
   background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 
-.package-card__label {
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  opacity: 0.85;
+.quotes__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
-.package-card__price {
+.quotes__count {
   font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  min-width: 68px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;   /* stops the counter jittering */
+}
+
+.quotes__count span:first-child { color: var(--color-primary-dark); }
+.quotes__sep { margin: 0 8px; opacity: 0.5; }
+
+/* =========================================================
+   Packages — editorial rate rows
+   ========================================================= */
+.rates {
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.rate {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 30px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
+}
+
+.rate:hover { background: var(--color-secondary); }
+
+.rate__num {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+.rate__name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--color-primary-dark);
 }
 
-.package-card--featured .package-card__price { color: #fff; }
-
-.package-card__price span {
-  font-size: 1.1rem;
-  font-weight: 400;
-  opacity: 0.8;
-}
-
-.packages__note {
-  text-align: center;
+.rate__detail {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  font-weight: 300;
   color: var(--color-text-muted);
-  font-weight: 500;
-  margin-bottom: 28px;
 }
 
-.packages__cta { text-align: center; }
+.rate__tag {
+  display: inline-block;
+  vertical-align: 3px;
+  margin-left: 12px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.rate__price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--color-primary-dark);
+  font-variant-numeric: tabular-nums;   /* keeps the rate column aligned */
+}
+
+.rate__unit {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* The featured row is marked with a rule and a tag rather than a filled
+   block, so it reads as emphasis instead of a different component. */
+.rate--featured {
+  background: var(--color-secondary);
+  box-shadow: inset 2px 0 0 var(--color-accent);
+}
+
+.rates__note {
+  max-width: 900px;
+  margin: 30px auto 0;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.packages__cta { text-align: center; margin-top: 44px; }
 
 /* =========================================================
    Signature Line
@@ -788,8 +1127,23 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 
 .cta-strip__inner p {
-  opacity: 0.9;
-  margin-bottom: 28px;
+  opacity: 0.78;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+/* The solid button is ink, which would vanish against the ink CTA band —
+   invert it here so it still reads as the primary action. */
+.cta-strip .btn--whatsapp {
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  border-color: var(--color-surface);
+}
+
+.cta-strip .btn--whatsapp:hover {
+  background: var(--color-accent-on-dark);
+  border-color: var(--color-accent-on-dark);
+  color: var(--color-primary-dark);
 }
 
 /* =========================================================
@@ -835,9 +1189,9 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
    Footer
    ========================================================= */
 .footer {
-  background: #1D2B1E;
-  color: rgba(255, 255, 255, 0.85);
-  padding: 64px 0 0;
+  background: var(--color-primary);
+  color: rgba(255, 255, 255, 0.72);
+  padding: 88px 0 0;
 }
 
 .footer__grid {
@@ -857,23 +1211,36 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 .footer__links h4,
 .footer__contact h4,
 .footer__social h4 {
-  color: var(--color-accent);
-  font-size: 0.95rem;
+  color: var(--color-accent-on-dark);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   font-family: var(--font-body);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .footer__links a,
 .footer__contact a,
 .footer__contact p {
   display: block;
-  margin-bottom: 10px;
   font-size: 0.92rem;
   opacity: 0.85;
+  line-height: 1.6;
 }
 
+/* Links get a taller hit area to clear the 44px touch minimum; the
+   paragraphs beside them keep plain margin so the rhythm still matches. */
+.footer__links a,
+.footer__contact a {
+  padding: 11px 0;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.footer__contact p { margin-bottom: 10px; }
+
 .footer__links a:hover,
-.footer__contact a:hover { opacity: 1; color: var(--color-accent); }
+.footer__contact a:hover { opacity: 1; color: var(--color-accent-on-dark); }
 
 .footer__social-icons {
   display: flex;
@@ -881,8 +1248,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 
 .footer__social-icons a {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
@@ -893,7 +1260,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   transition: background var(--transition);
 }
 
-.footer__social-icons a:hover { background: var(--color-accent); color: #1D2B1E; }
+.footer__social-icons a:hover { background: var(--color-accent-on-dark); color: var(--color-primary); }
 
 .footer__bottom {
   text-align: center;
@@ -951,12 +1318,31 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
    Responsive
    ========================================================= */
 @media (max-width: 1024px) {
-  .amenities__grid,
-  .videos__grid,
-  .attractions__grid,
-  .testimonials__grid,
-  .packages__grid { grid-template-columns: repeat(2, 1fr); }
+  /* Eight nav links plus the wordmark overflow well before 768px, which was
+     making "Villa" collide with "Home". Switch to the drawer here instead. */
+  .navbar__nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(78%, 320px);
+    background: var(--color-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px 32px;
+    transform: translateX(100%);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+  }
 
+  .navbar__nav.is-open { transform: translateX(0); }
+  .navbar__nav .nav-link { color: var(--color-text); font-size: 0.9rem; }
+  .navbar__toggle { display: flex; }
+
+  .amenities__grid,
+  .attractions__grid,
   .why__grid { grid-template-columns: repeat(2, 1fr); }
 
   .about__grid,
@@ -965,30 +1351,39 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 768px) {
-  .navbar__nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100dvh;
-    width: min(78%, 320px);
-    background: #fff;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 24px;
-    padding: 40px 32px;
-    transform: translateX(100%);
-    transition: transform 300ms ease;
-    box-shadow: var(--shadow-lg);
+/* The mosaic spans out-specify the breakpoint rules below, so they have to
+   be reset explicitly or they survive into the stacked layouts. Asymmetry
+   is a wide-viewport luxury; narrow screens get an even grid. */
+@media (max-width: 900px) {
+  .gallery__grid--mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 12px;
   }
 
-  .navbar__nav.is-open { transform: translateX(0); }
+  .gallery__grid--mosaic .gallery__item { aspect-ratio: 1 / 1; }
 
-  .navbar__nav .nav-link { color: var(--color-text); font-size: 1.1rem; }
-  .navbar__nav .nav-link--cta { color: #2A2A26; }
+  .gallery__grid--mosaic .gallery__item:nth-child(1),
+  .gallery__grid--mosaic .gallery__item:nth-child(4),
+  .gallery__grid--mosaic .gallery__item:nth-child(5),
+  .gallery__grid--mosaic .gallery__item:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
 
-  .navbar__toggle { display: flex; }
+  /* Same reason: the feature card's spans out-specify the column rules
+     below and would leave a hole in the stacked grid. */
+  .attraction-card--feature {
+    grid-column: auto;
+    grid-row: auto;
+    padding: 28px 26px;
+  }
+
+  .attraction-card--feature .attraction-card__icon { width: 46px; height: 46px; }
+  .attraction-card--feature .attraction-card__name { font-size: 1.05rem; }
+}
+
+@media (max-width: 768px) {
   .navbar.is-scrolled .navbar__toggle span,
   .navbar__toggle span { background: #fff; }
   .navbar.is-scrolled .navbar__toggle span { background: var(--color-text); }
@@ -998,27 +1393,45 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
   .navbar__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .amenities__grid,
-  .videos__grid,
   .attractions__grid,
-  .testimonials__grid,
   .why__grid,
-  .packages__grid,
   .gallery__grid { grid-template-columns: repeat(2, 1fr); }
 
   .about__points { grid-template-columns: 1fr; }
 
   .footer__grid { grid-template-columns: 1fr 1fr; }
 
-  .section { padding: 56px 0; }
+  .section { padding: 72px 0; }
+  .section-head { margin-bottom: 44px; }
+}
+
+@media (max-width: 620px) {
+  /* Stack the rate rows: number + name on one line, price beneath, so the
+     price never gets squeezed against a wrapping name. */
+  .rate {
+    grid-template-columns: auto 1fr;
+    align-items: start;   /* keep the numeral beside the name, not the detail */
+    gap: 6px 16px;
+    padding: 26px 18px;
+  }
+
+  .rate__num { padding-top: 7px; }
+
+  .rate__price {
+    grid-column: 2;
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .rate__unit { margin-top: 6px; }
+  .rate__name { font-size: 1.2rem; }
+  .rate__tag { margin-left: 0; margin-top: 8px; display: block; width: fit-content; }
 }
 
 @media (max-width: 480px) {
   .amenities__grid,
-  .videos__grid,
   .attractions__grid,
-  .testimonials__grid,
   .why__grid,
-  .packages__grid,
   .gallery__grid { grid-template-columns: 1fr; }
 
   .footer__grid { grid-template-columns: 1fr; text-align: left; }

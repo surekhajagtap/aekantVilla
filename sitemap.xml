@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://surekhajagtap.github.io/aekantVilla/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/hero.jpg</image:loc>
+      <image:title>Aekant Villa on the Vaitarna Dam backwaters near Trimbakeshwar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa1.jpg</image:loc>
+      <image:title>Illuminated garden gazebo with seating at Aekant Villa, Nashik</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa2.jpg</image:loc>
+      <image:title>Aekant Villa exterior with landscaped lawn near Trimbakeshwar, Nashik</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa3.jpg</image:loc>
+      <image:title>Garden lawn and gazebo with mountain views at Aekant Villa, Nashik</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa4.jpg</image:loc>
+      <image:title>Private swimming pool with fountain at Aekant Villa, Trimbakeshwar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa5.jpg</image:loc>
+      <image:title>Aekant Villa exterior with open terrace and mountain backdrop</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/villa6.jpg</image:loc>
+      <image:title>Private pool at sunset with mountain views, Aekant Villa near Vaitarna Dam</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://surekhajagtap.github.io/aekantVilla/gallery.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/1.jpg</image:loc>
+      <image:title>Carved wooden main entrance of Aekant Villa lit up at night</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/2.jpg</image:loc>
+      <image:title>Aekant Villa exterior with red-tiled porch and landscaped lawn, Trimbakeshwar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/3.jpg</image:loc>
+      <image:title>Air-conditioned bedroom with wardrobe and marble flooring at Aekant Villa</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/4.jpg</image:loc>
+      <image:title>3BHK villa bedroom with cove lighting and fresh towels at Aekant Villa, Nashik</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/5.jpg</image:loc>
+      <image:title>Spacious living room with TV and sofa seating at Aekant Villa, Trimbakeshwar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/6.jpg</image:loc>
+      <image:title>Second bedroom with wardrobe and attached bathroom at Aekant Villa</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/7.jpg</image:loc>
+      <image:title>Third bedroom with double bed and air conditioning at Aekant Villa, Nashik</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/8.jpg</image:loc>
+      <image:title>Modern bathroom with rain shower and hot water geyser at Aekant Villa</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/9.jpg</image:loc>
+      <image:title>Bedroom with wardrobe, air conditioning and cove lighting at Aekant Villa</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://surekhajagtap.github.io/aekantVilla/images/gallery/10.jpg</image:loc>
+      <image:title>Illuminated swimming pool under a starry night sky at Aekant Villa, Nashik</image:title>
+    </image:image>
+  </url>
+</urlset>

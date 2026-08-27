@@ -1,0 +1,285 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LodgingBusiness", "VacationRental"],
+      "@id": "https://surekhajagtap.github.io/aekantVilla/#villa",
+      "name": "Aekant Villa",
+      "alternateName": "Aekant Villa Trimbakeshwar",
+      "url": "https://surekhajagtap.github.io/aekantVilla/",
+      "description": "Aekant Villa is a private 3-bedroom luxury villa with a private swimming pool at Alwand, Trimbakeshwar, Nashik — set beside the Vaitarna Dam backwaters with mountain views. Ideal for family getaways, corporate offsites, friends' trips and couples from Mumbai, Thane, Pune and Nashik.",
+      "image": [
+        "https://surekhajagtap.github.io/aekantVilla/images/hero.jpg",
+        "https://surekhajagtap.github.io/aekantVilla/images/villa1.jpg",
+        "https://surekhajagtap.github.io/aekantVilla/images/villa2.jpg",
+        "https://surekhajagtap.github.io/aekantVilla/images/villa3.jpg"
+      ],
+      "logo": "https://surekhajagtap.github.io/aekantVilla/images/logo.png",
+      "telephone": "+91-86683-31054",
+      "email": "booking@aekantvilla.com",
+      "priceRange": "₹3,000 - ₹12,000",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, UPI, Bank Transfer",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Alwand, near Vaitarna Dam Backwaters",
+        "addressLocality": "Trimbakeshwar",
+        "addressRegion": "Maharashtra",
+        "postalCode": "422212",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.8955,
+        "longitude": 73.4791
+      },
+      "hasMap": "https://maps.google.com/?q=Aekant+Villa+Alwand+Trimbakeshwar+Nashik",
+      "checkinTime": "13:00",
+      "checkoutTime": "11:00",
+      "numberOfRooms": 3,
+      "numberOfBedrooms": 3,
+      "numberOfBathroomsTotal": 4,
+      "petsAllowed": false,
+      "smokingAllowed": false,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "minValue": 2,
+        "maxValue": 12,
+        "unitText": "guests"
+      },
+      "floorSize": {
+        "@type": "QuantitativeValue",
+        "unitCode": "FTK",
+        "value": 2500
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Private Swimming Pool", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Mountain View", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Lake / Backwater View", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Bonfire and Outdoor Seating", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Complimentary Breakfast", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Fully Equipped Kitchen", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Large Terrace", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Spacious Hall", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Indoor Games", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Food Delivery Available", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Weekday Stay (Mon–Thu)",
+          "description": "Entire 3BHK villa with private pool. Complimentary breakfast included.",
+          "price": "9000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "url": "https://wa.me/918668331054",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "9000",
+            "priceCurrency": "INR",
+            "unitCode": "DAY",
+            "unitText": "per night"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Weekend Stay (Fri–Sun)",
+          "description": "Entire 3BHK villa with private pool. Complimentary breakfast included.",
+          "price": "12000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "url": "https://wa.me/918668331054",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "12000",
+            "priceCurrency": "INR",
+            "unitCode": "DAY",
+            "unitText": "per night"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Couple Package",
+          "description": "One private bedroom for two guests with pool access and complimentary breakfast.",
+          "price": "3000",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "url": "https://wa.me/918668331054",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "3000",
+            "priceCurrency": "INR",
+            "unitCode": "DAY",
+            "unitText": "per night"
+          }
+        }
+      ],
+      "containsPlace": {
+        "@type": "Accommodation",
+        "name": "Entire Villa — 3 Bedrooms",
+        "numberOfBedrooms": 3,
+        "numberOfBathroomsTotal": 4,
+        "occupancy": {
+          "@type": "QuantitativeValue",
+          "maxValue": 12,
+          "unitText": "guests"
+        }
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Mumbai" },
+        { "@type": "City", "name": "Thane" },
+        { "@type": "City", "name": "Pune" },
+        { "@type": "City", "name": "Nashik" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/aekant_villa/"
+      ],
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/918668331054",
+          "actionPlatform": [
+            "https://schema.org/DesktopWebPlatform",
+            "https://schema.org/MobileWebPlatform"
+          ]
+        },
+        "result": {
+          "@type": "LodgingReservation",
+          "name": "Book Aekant Villa"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "reviewCount": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Mayuresh Dhondkar" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Absolutely loved our stay. This villa is a perfect blend of comfort, luxury, and warmth. The swimming pool was crystal clear and truly the highlight of our stay."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Dipen Sharma" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "You will enjoy the luxury of a spacious 3BHK villa at a steal price. If you are looking to just relax and chill in nature, book this property right away."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Viraj Mundada" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "This villa is a hidden gem near Nashik. The scenic views and sunsets are breathtaking, and the swimming pool is clean and refreshing."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Pranali Rane" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "The villa was clean, spacious, and beautifully maintained. Truly one of the best villa experiences we have had."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Joel Sonawane" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "The ambience was pleasant, and hygiene and cleanliness were well maintained throughout the property. The pool was clean and the view absolutely beautiful."
+        }
+      ],
+      "containedInPlace": {
+        "@type": "Place",
+        "name": "Vaitarna Dam Backwaters, Trimbakeshwar",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Trimbakeshwar",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        }
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://surekhajagtap.github.io/aekantVilla/#website",
+      "url": "https://surekhajagtap.github.io/aekantVilla/",
+      "name": "Aekant Villa",
+      "publisher": { "@id": "https://surekhajagtap.github.io/aekantVilla/#villa" },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://surekhajagtap.github.io/aekantVilla/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How far is Aekant Villa from Mumbai, Thane, Pune and Nashik?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aekant Villa is roughly 3.5 hours from Mumbai, 3 hours from Thane, 4.5 hours from Pune and just 45 minutes from Nashik city, by road via Trimbakeshwar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Aekant Villa have a private swimming pool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Aekant Villa has a private swimming pool reserved exclusively for in-house guests, with mountain and Vaitarna backwater views."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does it cost to book Aekant Villa per night?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Weekday nights are ₹9,000, weekend nights are ₹12,000 for the entire villa, and the couple package is ₹3,000 per night. Complimentary breakfast is included in every package."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many guests can stay at Aekant Villa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The villa has 3 spacious bedrooms and 4 bathrooms, plus a large hall and terrace, comfortably hosting families, groups of friends and corporate teams."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I book Aekant Villa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Book directly on WhatsApp at +91 86683 31054 for the best available rate, or message @aekant_villa on Instagram or email booking@aekantvilla.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is there to do near Aekant Villa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The villa is close to the Trimbakeshwar Shiva Jyotirlinga Temple, the Vaitarna Dam backwaters, Pahine Waterfall, sunrise and sunset points, and scenic nature-walk trails."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://surekhajagtap.github.io/aekantVilla/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://surekhajagtap.github.io/aekantVilla/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Photo Gallery",
+          "item": "https://surekhajagtap.github.io/aekantVilla/gallery.html"
+        }
+      ]
+    }
+  ]
+}

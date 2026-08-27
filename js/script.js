@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSmoothAnchorScroll();
   initScrollAnimations();
   initGalleryLightbox();
+  initQuotes();
   initScrollTopButton();
 });
 
@@ -29,21 +30,33 @@ async function renderFullGallery() {
 
   const { folder, extension, start } = GALLERY_CONFIG;
   const maxCheck = 500; // safety cap in case of an unbroken numbering mistake
-  const sources = [];
+  const batchSize = 10; // probe a batch at a time instead of one round trip per photo
+  const numbers = [];
 
-  let i = start;
-  while (i - start < maxCheck) {
-    const src = `${folder}/${i}.${extension}`;
-    if (!(await checkImageExists(src))) break;
-    sources.push(src);
-    i++;
+  for (let base = start; base - start < maxCheck; base += batchSize) {
+    const batch = Array.from({ length: batchSize }, (_, n) => base + n);
+    const found = await Promise.all(
+      batch.map((n) => checkImageExists(`${folder}/${n}.${extension}`))
+    );
+    const gap = found.indexOf(false);
+    numbers.push(...(gap === -1 ? batch : batch.slice(0, gap)));
+    if (gap !== -1) break;
   }
 
-  grid.innerHTML = sources.map((src, idx) => `
+  // The first row is above the fold, so let it load eagerly for a faster LCP.
+  const eagerCount = 3;
+
+  grid.innerHTML = numbers.map((n, idx) => {
+    const src = `${folder}/${n}.${extension}`;
+    const alt = (typeof GALLERY_ALT !== 'undefined' && GALLERY_ALT[n])
+      || `Aekant Villa, private pool villa near Trimbakeshwar, Nashik — photo ${idx + 1}`;
+    const loading = idx < eagerCount ? 'eager' : 'lazy';
+    return `
     <button class="gallery__item fade-in-up" data-full="${src}">
-      <img src="${src}" alt="Aekant Villa photo ${idx + 1}" loading="lazy" width="500" height="667" />
+      <img src="${src}" alt="${alt}" loading="${loading}" decoding="async" width="500" height="500" />
     </button>
-  `).join('');
+  `;
+  }).join('');
 }
 
 /* ---------- Footer Year ---------- */
@@ -192,6 +205,39 @@ function initGalleryLightbox() {
     if (e.key === 'ArrowLeft') showPrev();
     if (e.key === 'ArrowRight') showNext();
   });
+}
+
+/* ---------- Guest Quotes (one pull-quote at a time) ---------- */
+function initQuotes() {
+  const root = document.getElementById('quotes');
+  if (!root) return;
+
+  const quotes = Array.from(root.querySelectorAll('.quote'));
+  const indexEl = document.getElementById('quoteIndex');
+  const totalEl = document.getElementById('quoteTotal');
+  if (!quotes.length) return;
+
+  const pad = (n) => String(n).padStart(2, '0');
+  let current = 0;
+
+  const show = (next) => {
+    current = (next + quotes.length) % quotes.length;
+    quotes.forEach((q, i) => q.classList.toggle('is-active', i === current));
+    if (indexEl) indexEl.textContent = pad(current + 1);
+  };
+
+  root.querySelectorAll('.quotes__btn').forEach((btn) => {
+    btn.addEventListener('click', () => show(current + Number(btn.dataset.dir)));
+  });
+
+  // Arrow keys work once focus is anywhere inside the quote block.
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+  });
+
+  if (totalEl) totalEl.textContent = pad(quotes.length);
+  show(0);
 }
 
 /* ---------- Scroll to Top Button ---------- */
