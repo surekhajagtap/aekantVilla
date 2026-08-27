@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSmoothAnchorScroll();
   initScrollAnimations();
   initGalleryLightbox();
+  initQuotes();
   initScrollTopButton();
 });
 
@@ -204,6 +205,39 @@ function initGalleryLightbox() {
     if (e.key === 'ArrowLeft') showPrev();
     if (e.key === 'ArrowRight') showNext();
   });
+}
+
+/* ---------- Guest Quotes (one pull-quote at a time) ---------- */
+function initQuotes() {
+  const root = document.getElementById('quotes');
+  if (!root) return;
+
+  const quotes = Array.from(root.querySelectorAll('.quote'));
+  const indexEl = document.getElementById('quoteIndex');
+  const totalEl = document.getElementById('quoteTotal');
+  if (!quotes.length) return;
+
+  const pad = (n) => String(n).padStart(2, '0');
+  let current = 0;
+
+  const show = (next) => {
+    current = (next + quotes.length) % quotes.length;
+    quotes.forEach((q, i) => q.classList.toggle('is-active', i === current));
+    if (indexEl) indexEl.textContent = pad(current + 1);
+  };
+
+  root.querySelectorAll('.quotes__btn').forEach((btn) => {
+    btn.addEventListener('click', () => show(current + Number(btn.dataset.dir)));
+  });
+
+  // Arrow keys work once focus is anywhere inside the quote block.
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+  });
+
+  if (totalEl) totalEl.textContent = pad(quotes.length);
+  show(0);
 }
 
 /* ---------- Scroll to Top Button ---------- */
